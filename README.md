@@ -1,83 +1,126 @@
-Start
-Output [1] Snacks
-Output [2] Drinks
-Declare choice : int
-Input choice
-Output Enter Quantity
+import sys
 
-If choice == 1:
-Output snack
-Output [1] Snacks
-Output [2] Drinks
-pia = 24
-noba = 25
-declare choice1 : int
-input choice1:
-output Enter your choice of snacks 
-          if choice1 == 1:
-               output Pyatos 23.00
-               declare quantity : int
-               input quantity
-               output Enter Quantity:
-               subtotal = quantity * pia
-               output “Subtotal is: , “subtotal
-               declare cash : int
-               input cash
-               output enter your cash :
-               total = cash – subtotal
-               output “change is: , “ total
-         elif choice1 == 2:
-               output noba 25.00 pesos
-               declare quantity : int
-               input quantity 
-               output Enter Quantity
-               subtotal = quantity * noba
-               output  Subtotal is: " ,subtotal
-               declare cash :int
-               input  cash 
-               output enter cash:
-               total = cash – subtotal
-               output “change is: , total “
-        else :
-                output "Invalid Choice! Please Pick between Pyatos and Noba ONLY!"
-else: 
-       print("Invalid Choice! Please select between Snacks and Drinks Only!")
+print("")
+print(" WELCOME TO TRAVEL & TOUR SYSTEM")
+print("")
 
-if choice == 2:
-output “drinks”
-Output [1] Tota Tola 15.00 pesos
-Output [2] Pepsi 14.00 pesos
-tota_tola = 15 
-pepsi = 14
-	declare choice2 : int 
-	input choice 
-	output Enter your choice of drinks: 
+print("\nAvailable Tour Packages:")
+print("1. Boracay Island - ₱3,500 per person")
+print("2. Baguio City - ₱2,500 per person")
+print("3. Palawan Adventure - ₱5,000 per person")
+print("4. Cebu Getaway - ₱4,000 per person")
 
-	if choice2 == 1:
-	output tota tola 15.00 pesos
-	declare quantity : int
-	input quantity
-	output Enter Quantity
-	subtotal = quantity * tota _tola 
-	output “Subtotal is: ”, subtotal
-	declare cash : int 
-	input cash
-	output Enter your Cash 
-	total =  cash – subtotal 
-        output “Change is: ”, total
-	
-        elif choice2== 2: 
-               output Pepsi 14.00 pesos
-    	       declare quantity : int 
-	       input quantity
-	       output Enter Quantity
-	       subtotal = quantity * pepsi 
-	       output “subtotal is: “, subtotal
-	       declare cash : int 
-	       input cash
-	       output Enter your cash: 
-	       total = cash – subtotal
-	       output “change is : , change”
-       else:
-	      output "INVALID CHOICE! PLEASE SELECT BETWEEN Tota Tola and Pepsi ONLY!
-END
+name = input("\nEnter your name: ")
+
+Package Selection
+choice = input("Enter package number (1-4): ")
+
+if choice == "1":
+destination = "Boracay Island"
+price = 3500
+elif choice == "2":
+destination = "Baguio City"
+price = 2500
+elif choice == "3":
+destination = "Palawan Adventure"
+price = 5000
+elif choice == "4":
+destination = "Cebu Getaway"
+price = 4000
+else:
+print("\nInvalid package choice. Please restart.")
+sys.exit()
+
+Travelers Input with Validation (Max 50)
+travelers = int(input("Enter number of travelers (Max 50): "))
+if travelers < 1 or travelers > 50:
+print("\nInvalid number of travelers. Allowed range is 1 to 50.")
+sys.exit()
+
+Transportation Selection (Uses the package fee as the per-person transport cost)
+print(f"\nTransportation Options (Fee matches package price: ₱{price:,.2f} per person):")
+print("1. Bus")
+print("2. Airplane")
+print("3. Ship")
+
+trans_choice = input("Choose transportation mode (1-3): ")
+
+if trans_choice == "1":
+transport = "Bus"
+elif trans_choice == "2":
+transport = "Airplane"
+elif trans_choice == "3":
+transport = "Ship"
+else:
+print("\nInvalid transportation choice. Please restart.")
+sys.exit()
+
+Set transport rate equal to package price
+trans_price = price
+
+Baggage Weight Input & Excess Fee Calculation using Recursion with IF/ELIF/ELSE
+print("\n--- Baggage Information ---")
+print("Standard Limit: 15kg per traveler")
+print("Excess Fee: ₱100 per kg over limit")
+
+total_baggage_fee = 0
+
+Function replacing the loop using only IF/ELIF/ELSE and recursion
+def calculate_baggage(current_traveler, max_travelers, current_total_fee):
+if current_traveler > max_travelers:
+return current_total_fee
+else:
+weight = float(input(f"Enter baggage weight for Traveler {current_traveler} (kg): "))
+if weight > 15:
+excess = weight - 15
+current_total_fee += excess * 100
+
+return calculate_baggage(current_traveler + 1, max_travelers, current_total_fee)
+
+total_baggage_fee = calculate_baggage(1, travelers, 0)
+
+Base Calculations
+tour_subtotal = price * travelers
+trans_subtotal = trans_price * travelers
+base_total = tour_subtotal + trans_subtotal
+
+Group Discount (Applied to combined base cost)
+if travelers >= 5:
+discount = base_total * 0.10
+discount_name = "10% Group Discount"
+elif travelers >= 3:
+discount = base_total * 0.05
+discount_name = "5% Group Discount"
+else:
+discount = 0
+discount_name = "No Group Discount"
+
+final_total = (base_total - discount) + total_baggage_fee
+
+Booking Summary
+print("\n==========================================")
+print(" BOOKING SUMMARY")
+print("")
+print(f"Customer Name : {name}")
+print(f"Destination : {destination}")
+print(f"Transportation : {transport}")
+print(f"Travelers : {travelers}")
+print(f"Package Subtotal: ₱{tour_subtotal:,.2f}")
+print(f"Transport Subtotal: ₱{trans_subtotal:,.2f}")
+print(f"Discount : {discount_name} (-₱{discount:,.2f})")
+print(f"Baggage Fees : ₱{total_baggage_fee:,.2f}")
+print("------------------------------------------")
+print(f"TOTAL AMOUNT : ₱{final_total:,.2f}")
+print("")
+
+Payment Processing
+cash = float(input("\nEnter cash amount : ₱"))
+
+if cash < final_total:
+print(f"Insufficient cash! You still owe ₱{final_total - cash:,.2f}.")
+else:
+change = cash - final_total
+print(f"Payment Received : ₱{cash:,.2f}")
+print(f"Change : ₱{change:,.2f}")
+print("\nThank you for booking with us! Have a safe trip.")
+
