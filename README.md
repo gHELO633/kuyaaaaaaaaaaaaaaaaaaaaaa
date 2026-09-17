@@ -58,7 +58,7 @@ else:
 trans_price = price
 
 
-print("\n--- Baggage Information ---")
+print("\n=== Baggage Information ===")
 print("Standard Limit: 15kg per traveler")
 print("Excess Fee: ₱100 per kg over limit")
 
@@ -295,7 +295,7 @@ print(f"Package Subtotal : ₱{tour_subtotal:,.2f}")
 print(f"Transport Subtotal: ₱{trans_subtotal:,.2f}")
 print(f"Discount         : {discount_name} (-₱{discount:,.2f})")
 print(f"Baggage Fees     : ₱{total_baggage_fee:,.2f}")
-print("------------------------------------------")
+print("============================================")
 print(f"TOTAL AMOUNT     : ₱{final_total:,.2f}")
 print("")
 
