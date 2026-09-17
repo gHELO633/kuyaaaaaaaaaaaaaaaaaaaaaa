@@ -1,8 +1,8 @@
 import sys
 
-print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+print("==================================")
 print(" WELCOME TO TRAVEL & TOUR SYSTEM")
-print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+print("==================================")
 
 print("\nAvailable Tour Packages:")
 print("1. Boracay Island - ₱3,500 per person")
