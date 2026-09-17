@@ -1,8 +1,8 @@
 import sys
 
-print("")
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 print(" WELCOME TO TRAVEL & TOUR SYSTEM")
-print("")
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 print("\nAvailable Tour Packages:")
 print("1. Boracay Island - ₱3,500 per person")
@@ -12,7 +12,7 @@ print("4. Cebu Getaway - ₱4,000 per person")
 
 name = input("\nEnter your name: ")
 
-# Package Selection
+
 choice = input("Enter package number (1-4): ")
 
 if choice == "1":
@@ -31,13 +31,13 @@ else:
     print("\nInvalid package choice. Please restart.")
     sys.exit()
 
-# Travelers Input with Validation (Max 50)
+
 travelers = int(input("Enter number of travelers (Max 50): "))
 if travelers < 1 or travelers > 50:
     print("\nInvalid number of travelers. Allowed range is 1 to 50.")
     sys.exit()
 
-# Transportation Selection
+
 print(f"\nTransportation Options (Fee matches package price: ₱{price:,.2f} per person):")
 print("1. Bus")
 print("2. Airplane")
@@ -57,14 +57,14 @@ else:
 
 trans_price = price
 
-# Baggage Information using ONLY IF/ELIF/ELSE (Up to 50 Travelers)
+
 print("\n--- Baggage Information ---")
 print("Standard Limit: 15kg per traveler")
 print("Excess Fee: ₱100 per kg over limit")
 
 total_baggage_fee = 0.0
 
-# Traveler 1 to 50 sequentially checked using IF statements
+
 if travelers >= 1:
     w = float(input("Enter baggage weight for Traveler 1 (kg): "))
     if w > 15: total_baggage_fee += (w - 15) * 100
@@ -265,12 +265,12 @@ if travelers >= 50:
     w = float(input("Enter baggage weight for Traveler 50 (kg): "))
     if w > 15: total_baggage_fee += (w - 15) * 100
 
-# Base Calculations
+
 tour_subtotal = price * travelers
 trans_subtotal = trans_price * travelers
 base_total = tour_subtotal + trans_subtotal
 
-# Group Discount
+
 if travelers >= 5:
     discount = base_total * 0.10
     discount_name = "10% Group Discount"
@@ -283,7 +283,7 @@ else:
 
 final_total = (base_total - discount) + total_baggage_fee
 
-# Booking Summary
+
 print("\n==========================================")
 print(" BOOKING SUMMARY")
 print("")
@@ -299,7 +299,7 @@ print("------------------------------------------")
 print(f"TOTAL AMOUNT     : ₱{final_total:,.2f}")
 print("")
 
-# Payment Processing
+
 cash = float(input("\nEnter cash amount : ₱"))
 
 if cash < final_total:
