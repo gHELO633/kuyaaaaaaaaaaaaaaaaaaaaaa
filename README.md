@@ -300,7 +300,7 @@ print(f"TOTAL AMOUNT     : ₱{final_total:,.2f}")
 print("")
 
 
-cash = float(input("\nEnter cash amount : ₱"))
+cash = float(input("\nEnter  your cash amount : ₱"))
 
 if cash < final_total:
     print(f"Insufficient cash! You still owe ₱{final_total - cash:,.2f}.")
